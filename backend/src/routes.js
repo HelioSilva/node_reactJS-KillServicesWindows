@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+
+//Controllers
+const controlCliente = require('./Controller/clienteController');
+
+
+//String de Rotas
 const ckeckStatus = '/statusService';
 
 function response(req,type,id,cod,msg){
@@ -25,17 +31,23 @@ function response(req,type,id,cod,msg){
 router.get(ckeckStatus+'/:cnpj',(req,res)=>{
     let {cnpj} = req.params ;
 
-    console.log(req);
-
     try {
         res.json( response( req.headers.host+req.originalUrl, 
-                            'STATUS' ,
+                            'STATU' ,
                             999,
                             100,
                             'Tudo certo!!!!') );
     } catch (e) {
-        res.json( response(req.headers.host+req.originalUrl,'STATUS',0,400,'Error!'))        
+        res.json( response(req.headers.host+req.originalUrl,
+                            'STATUS',
+                            0,
+                            400,
+                            'Error!'));        
     }
 })
+
+router.post('/insert',controlCliente.store);
+router.get('/consulta/:cnpj',controlCliente.getStatus);
+router.get('/status/:cnpj/:ativo',controlCliente.setStatus);
 
 module.exports = router ;

@@ -1,11 +1,16 @@
 const express = require('express');
-const router = require('./routes')
+const router = require('./routes');
+const mongoose = require('mongoose');
+const cors     = require('cors');
+
+
 
 var app = express();
+mongoose.connect('mongodb://3.90.37.26:27017/servicekill', {useNewUrlParser: true,useUnifiedTopology: true });
 
-
+app.use(cors());
+app.use(express.json());
 app.use(router);
-
 
 
 app.listen(7000, () => {

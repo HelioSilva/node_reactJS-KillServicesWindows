@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  app:  
+    container_name: node_killservice
+    build: .
+    ports:
+      - "7000:7000"
+    volumes:
+      - /home/ubuntu/node_killservice:/usr/app
+    command: npm start
