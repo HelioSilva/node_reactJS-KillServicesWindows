@@ -55,4 +55,4 @@ setInterval(async()=>{
        console.log("catch...");
    })   
 
-},30000);
+},15000);
