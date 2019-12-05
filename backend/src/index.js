@@ -6,7 +6,7 @@ const cors     = require('cors');
 
 
 var app = express();
-mongoose.connect('mongodb://3.90.37.26:27017/servicekill', {useNewUrlParser: true,useUnifiedTopology: true });
+mongoose.connect('mongodb://heliosilva.online:27017/servicekill', {useNewUrlParser: true,useUnifiedTopology: true });
 
 app.use(cors());
 app.use(express.json());

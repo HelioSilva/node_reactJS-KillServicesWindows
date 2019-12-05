@@ -4,7 +4,7 @@ const sc = require('windows-service-controller');
 const { exec } = require('child_process');
 
 const api = axios.create({
-    baseURL: 'http://3.90.37.26:7000/' ,
+    baseURL: 'http://heliosilva.online:7000/' ,
     timeout: 3000,
     headers: {'Content-Type': 'application/json'}
 });
@@ -55,4 +55,4 @@ setInterval(async()=>{
        console.log("catch...");
    })   
 
-},30000);
+},15000);

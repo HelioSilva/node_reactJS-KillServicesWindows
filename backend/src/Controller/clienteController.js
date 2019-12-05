@@ -1,11 +1,6 @@
 const Cliente = require('../Model/Cliente');
 
-
-
-
 module.exports = {
-
-
 
     async store(req,res){
 
