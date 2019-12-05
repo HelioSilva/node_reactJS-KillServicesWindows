@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Testes</title>
 </head>
 <body>
+    <div id="alert_placeholder"></div>
     
-    <div data-dismiss="alert" class="alert alert-warning  alert-dismissible fade show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+        <div class="alert alert-success alert-dismissible  fade show" id="myAlert">
+                <a href="#" class="close">&times;</a>
+                <strong>Success!</strong> This alert box could indicate a successful or positive action.
+              </div>
 
 
     <div class="container" style="
-        height: 100vh;
+        height: 80vh;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -26,19 +27,41 @@
     ">
         <button onclick="fazerRequisicao(true)" type="button"  class="btn btn-info">Ativar Serviço (Computek Serviços)</button>
         <button onclick="fazerRequisicao(false)" type="button" class="btn btn-info">Parar Serviço (Computek Serviços)</button>
-  
+        
     </div>
 
 
 
     <script>
 
+function showalert(message,alerttype) {
+
+$('#alert_placeholder').append('<div id="alertdiv" class="alert ' +  alerttype + '"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+
+setTimeout(function() { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+
+
+  $("#alertdiv").remove();
+
+}, 2000);
+}
+
+$(document).ready(function(){
+  $(".close").click(function(){
+    $("#myAlert").alert("close");
+  });
+
+  $(".abrir").click(function(){
+    showalert("teste","alert-success");
+  });
+});
+
 
 
         function fazerRequisicao(tipo){
 
-            var urlTrue = "http://3.90.37.26:7000/status/00657034000153/true";
-            var urlFalse = "http://3.90.37.26:7000/status/00657034000153/false";
+            var urlTrue = "http://heliosilva.online:7000/status/00657034000153/true";
+            var urlFalse = "http://heliosilva.online:7000/status/00657034000153/false";
 
             var xhttp = new XMLHttpRequest();
 
@@ -46,8 +69,13 @@
 
             xhttp.send();//A execução do script pára aqui até a requisição retornar do servidor
 
-            document.getElementById("resposta").innerHTML = xhttp.responseText;
-            $('.alert').alert('close')
+            let res = JSON.parse(xhttp.responseText);
+
+            if(res != null && res.ok==1){
+                showalert("Status alterado com sucesso!","alert-success");
+            }else{
+                showalert("Falha na comunicação!","alert-danger");
+            }
         }
     </script>
 
