@@ -1,0 +1,1 @@
+E:\_ProjetosWEB\_sistemaKillServices\servicoWin\Win32\Debug\ServiceKillAPP.exe /install
