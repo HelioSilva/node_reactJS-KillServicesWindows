@@ -1,14 +1,22 @@
 import React from 'react';
+import axios from './services/api';
 
-import './App.css';
+async function requisicao(){
+  const resp = await axios.get('/consulta/00657034000153');
+  console.log(resp);
+  return resp
+}
 
-function App() {
+function  App() {
+
+  requisicao();
+  
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Helio da Silva Filho
         </p>
         <a
           className="App-link"
