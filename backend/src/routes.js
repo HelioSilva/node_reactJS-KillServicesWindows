@@ -49,5 +49,6 @@ router.get(ckeckStatus+'/:cnpj',(req,res)=>{
 router.post('/insert',controlCliente.store);
 router.get('/consulta/:cnpj',controlCliente.getStatus);
 router.get('/status/:cnpj/:ativo',controlCliente.setStatus);
+router.get('/clientes',controlCliente.index);
 
 module.exports = router ;

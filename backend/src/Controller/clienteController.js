@@ -2,6 +2,14 @@ const Cliente = require('../Model/Cliente');
 
 module.exports = {
 
+    async index(req,res){
+
+        let clientes = await Cliente.find();
+
+        return res.json(clientes);
+
+    },
+
     async store(req,res){
 
         let {cnpj,razao,ativo} = req.body ;
