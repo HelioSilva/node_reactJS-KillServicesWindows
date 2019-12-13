@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import axios from '../../services/api'
-import {Container,Quadro,ItemQuadro,Aside,Content,Header} from './style'
+import {Container,Quadro,ItemQuadro,Aside,Content,Header,TopoItem,CorpoItem} from './style'
 
 function App() {
 
@@ -39,20 +39,21 @@ function App() {
             {
                 data.map(cli => (
                   <ItemQuadro key={cli._id}>
-                      <div>
-                        <h4>Telefone: (082) 32218567</h4>
-                        <h4>CNPJ: {cli.cnpj}</h4>
-                      </div>
-                      
-                      <h2>{cli.razao}</h2> 
-
-                      <p>Última comunicação: 11/12/2019</p>                
-                    
-                      <div className="rodapeItem">
-                              <button>Editar</button>
-                              <button onClick={()=>{alterarStatus(cli.cnpj,!cli.ativo)}} className={(cli.ativo) ? "aprovado" : "bloqueado"} >{(cli.ativo) ? "APROVADO" : "BLOQUEADO"}</button>
-                            
-                      </div>
+                      <TopoItem>
+                        <p>{cli.razao}</p> 
+                      </TopoItem>
+                      <CorpoItem>
+                        <div id="dados">
+                          <p>Telefone: (082) 32218567</p>
+                          <p>CNPJ: {cli.cnpj}</p>
+                          <p>Última comunicação: 11/12/2019</p> 
+                        </div>
+                           
+                        <div id="btn">
+                                <p>Editar</p>
+                                <p onClick={()=>{alterarStatus(cli.cnpj,!cli.ativo)}} className={(cli.ativo) ? "aprovado" : "bloqueado"} >{(cli.ativo) ? "APROVADO" : "BLOQUEADO"}</p> 
+                        </div>
+                      </CorpoItem>
                   </ItemQuadro> 
                 ))
             }
