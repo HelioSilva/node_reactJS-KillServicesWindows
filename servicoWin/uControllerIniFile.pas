@@ -51,7 +51,7 @@ begin
   begin
 
     {Section: Conexao}
-    FGeralCNPJ := Ini.ReadString(csIniConexaoSection, csIniGeralCNPJ, '00657034000153');
+    FGeralCNPJ   := Ini.ReadString(csIniConexaoSection, csIniGeralCNPJ,   '00000000000000');
     FGeralVERSAO := Ini.ReadString(csIniConexaoSection, csIniGeralVERSAO, '1.0');
   end;
 end;
@@ -60,11 +60,9 @@ procedure TIniOptions.SaveSettings(Ini: TIniFile);
 begin
   if Ini <> nil then
   begin
-
     {Section: Conexao}
-    Ini.WriteString(csIniConexaoSection, csIniGeralCNPJ, FGeralCNPJ);
+    Ini.WriteString(csIniConexaoSection, csIniGeralCNPJ,   FGeralCNPJ);
     Ini.WriteString(csIniConexaoSection, csIniGeralVERSAO, FGeralVERSAO);
-    
   end;
 end;
 

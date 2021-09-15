@@ -1,0 +1,1 @@
+E:\_ProjetosWEB\_sistemaKillServices\serviceWin2\Win32\Debug\Project1.exe /uninstall
