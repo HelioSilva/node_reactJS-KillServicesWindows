@@ -3,7 +3,9 @@ program ServiceKillAPP;
 uses
   Vcl.SvcMgr,
   uControllerIniFile in 'uControllerIniFile.pas',
-  principal in 'principal.pas' {Service1: TService};
+  principal in 'principal.pas' {Service1: TService},
+  uAutoUpdate in 'uAutoUpdate.pas',
+  uFunctionsUtils in 'uFunctionsUtils.pas';
 
 {$R *.RES}
 

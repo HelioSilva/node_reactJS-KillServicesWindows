@@ -9,11 +9,10 @@ const
 
   csIniConexaoSection = 'GERAL';
 
-
-
   {Section: Conexao}
   csIniGeralCNPJ = 'CNPJ';
   csIniGeralVERSAO = 'VERSAO';
+  csIniGeralINTERVAL = 'INTERVAL';
 
 
 type
@@ -24,8 +23,10 @@ type
     {Section: Conexao}
     FGeralCNPJ: string;
     FGeralVERSAO: string;
+    FGeralINTERVAL : integer ;
     procedure SetGeralCNPJ(const Value: string);
     procedure SetGeralVERSAO(const Value: string);
+    procedure SetGeralINTERVAL(const Value: integer);
 
   public
     procedure LoadSettings(Ini: TIniFile);
@@ -37,6 +38,7 @@ type
        {Section: Conexao}
     property GeralCNPJ: string  read FGeralCNPJ write SetGeralCNPJ;
     property GeralVERSAO : string  read FGeralVERSAO write SetGeralVERSAO;
+    property GeralINTERVAL: integer  read FGeralINTERVAL write SetGeralINTERVAL;
 
    end;
 
@@ -51,8 +53,9 @@ begin
   begin
 
     {Section: Conexao}
-    FGeralCNPJ   := Ini.ReadString(csIniConexaoSection, csIniGeralCNPJ,   '00000000000000');
+    FGeralCNPJ   := Ini.ReadString(csIniConexaoSection, csIniGeralCNPJ,   '');
     FGeralVERSAO := Ini.ReadString(csIniConexaoSection, csIniGeralVERSAO, '1.0');
+    FGeralINTERVAL := Ini.ReadInteger(csIniConexaoSection,csIniGeralINTERVAL,1)
   end;
 end;
 
@@ -63,6 +66,7 @@ begin
     {Section: Conexao}
     Ini.WriteString(csIniConexaoSection, csIniGeralCNPJ,   FGeralCNPJ);
     Ini.WriteString(csIniConexaoSection, csIniGeralVERSAO, FGeralVERSAO);
+    Ini.WriteInteger(csIniConexaoSection, csIniGeralINTERVAL, FGeralINTERVAL);
   end;
 end;
 
@@ -93,6 +97,11 @@ end;
 procedure TIniOptions.SetGeralCNPJ(const Value: string);
 begin
   FGeralCNPJ := Value;
+end;
+
+procedure TIniOptions.SetGeralINTERVAL(const Value: integer);
+begin
+  FGeralINTERVAL := Value ;
 end;
 
 procedure TIniOptions.SetGeralVERSAO(const Value: string);
